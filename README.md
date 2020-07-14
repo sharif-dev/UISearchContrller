@@ -41,4 +41,5 @@ override func tableView(
 )
 ```
 * Similarly, the other method that was responsible for returning cells, should be changed to weather assign a token or a country to each cell.
-![](https://raw.githubusercontent.com/sharif-dev/UISearchController/master/images/searchToken.jpg)
+
+![tokens](https://raw.githubusercontent.com/sharif-dev/UISearchController/master/images/searchToken.jpg)
