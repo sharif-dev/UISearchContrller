@@ -50,6 +50,7 @@ class MainViewController: UITableViewController {
     searchController.searchBar.placeholder = "Find a country"
     searchController.searchBar.scopeButtonTitles = Year.allCases.map { $0.description }
     searchController.searchBar.delegate = self
+    searchController.searchResultsUpdater = self
   }
   
   override func numberOfSections(in tableView: UITableView) -> Int {
@@ -118,5 +119,13 @@ extension MainViewController: UISearchBarDelegate {
   
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
     resultsTableViewController.countries = nil
+  }
+}
+
+// MARK: -
+
+extension MainViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    searchController.showsSearchResultsController = true
   }
 }
