@@ -159,6 +159,7 @@ extension MainViewController: UISearchBarDelegate {
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
     resultsTableViewController.countries = nil
     showScopeBar(false)
+    searchController.searchBar.searchTextField.backgroundColor = nil
   }
 }
 
@@ -166,8 +167,17 @@ extension MainViewController: UISearchBarDelegate {
 
 extension MainViewController: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {
+  // 1
+  if searchController.searchBar.searchTextField.isFirstResponder {
     searchController.showsSearchResultsController = true
+    // 2
+    searchController.searchBar
+      .searchTextField.backgroundColor = UIColor.rwGreen().withAlphaComponent(0.1)
+  } else {
+    // 3
+    searchController.searchBar.searchTextField.backgroundColor = nil
   }
+}
 }
 
 extension MainViewController: ResultsTableViewDelegate {
