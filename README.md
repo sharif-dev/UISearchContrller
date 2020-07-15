@@ -43,12 +43,16 @@ override func tableView(
 * Similarly, the other method that was responsible for returning cells, should be changed to weather assign a token or a country to each cell.
 
 ![tokens](https://raw.githubusercontent.com/sharif-dev/UISearchController/master/images/searchToken.jpg)
-##Adding search tokens 
+
+## Adding search tokens 
 we use delegate protocol to notify the mainController when user taps a token:
 * frist add ResultsTableViewDelegate protocol in ResultsTableViewController.swift and make a weak varible of it.
+
 * then if country has not been choosen it inform the delegate instance(it sends the selected token with didSelect function)
+
 * implement [ResultsTableViewDelegate.didSelect](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L134) in MainViewController.swift:
    get the search text, insert the token that we get to the end of the tokens for this text field at the end start searching.
+   
 * set delegate of resultsTableViewController, mainController.[like this](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L44)
 
 
