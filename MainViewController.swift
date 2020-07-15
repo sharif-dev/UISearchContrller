@@ -41,6 +41,7 @@ class MainViewController: UITableViewController {
     super.viewDidLoad()
     
     resultsTableViewController = storyboard!.instantiateViewController(withIdentifier: "resultsViewController") as? ResultsTableViewController
+    resultsTableViewController.delegate = self
     
     searchController = UISearchController(searchResultsController: resultsTableViewController)
     navigationItem.searchController = searchController
@@ -127,5 +128,16 @@ extension MainViewController: UISearchBarDelegate {
 extension MainViewController: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {
     searchController.showsSearchResultsController = true
+  }
+}
+
+extension MainViewController: ResultsTableViewDelegate {
+  func didSelect(token: UISearchToken) {
+    // 1
+    let searchTextField = searchController.searchBar.searchTextField
+    // 2
+    searchTextField.insertToken(token, at: searchTextField.tokens.count)
+    // 3
+    searchFor(searchController.searchBar.text)
   }
 }
