@@ -45,7 +45,7 @@ override func tableView(
 ![tokens](https://raw.githubusercontent.com/sharif-dev/UISearchController/master/images/searchToken.jpg)
 
 ## Adding search tokens 
-we use delegate protocol to notify the mainController when user taps a token:
+we use delegate protocol to notify the mainController when user taps a token, and add the token to the search bar like the screen below:
 * frist add ResultsTableViewDelegate protocol in ResultsTableViewController.swift and make a weak varible of it.
 
 * then if country has not been choosen it inform the delegate instance(it sends the selected token with didSelect function)
@@ -56,3 +56,15 @@ we use delegate protocol to notify the mainController when user taps a token:
 * set delegate of resultsTableViewController, mainController.[like this](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L44)
 <img src="https://github.com/sharif-dev/UISearchController/blob/master/images/token.png" width="420" height="800" />
 
+now we should modify our search with the choosen token:
+* get the tokens in the mainController.
+* change search function:
+  - make arrays of selectedYers and allCountries
+  - to find the search result we pass a closure to filter on allCountries array:
+    it check the year and the token, if we just searched by token, it returns the country if it matches the year and the token’s continent; else if we have text it will return the country if the year matches, the tokens match and the country’s name contains any of the characters in the search text.
+  - set the filtered array to the result.
+ <img src ="https://github.com/sharif-dev/UISearchController/blob/master/images/token_result.png" width ="420"  height="800" />
+
+## Hide and show scope bar
+To control it we shouldn't automatically show scopeBar, and make a function for showing scopebar , If the search text is not empty, the scope bar should be shown;when the user taps the search bar’s Cancel button,the scope bar should be hide , and when the user selects a token,scope bar will be shown.
+  
