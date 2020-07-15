@@ -65,6 +65,7 @@ class MainViewController: UITableViewController {
     searchController.searchBar.scopeButtonTitles = Year.allCases.map { $0.description }
     searchController.searchBar.delegate = self
     searchController.searchResultsUpdater = self
+    searchController.automaticallyShowsScopeBar = false
   }
   
   override func numberOfSections(in tableView: UITableView) -> Int {
@@ -133,6 +134,12 @@ extension MainViewController {
     }
     return scopeButtonTitles[searchController.searchBar.selectedScopeButtonIndex]
   }
+  
+  func showScopeBar(_ show: Bool) {
+  guard searchController.searchBar.showsScopeBar != show else { return }
+  searchController.searchBar.setShowsScope(show, animated: true)
+  view.setNeedsLayout()
+}
 }
 
 // MARK: -
@@ -145,10 +152,13 @@ extension MainViewController: UISearchBarDelegate {
   
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     searchFor(searchText)
+    let showScope = !searchText.isEmpty
+    showScopeBar(showScope)
   }
   
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
     resultsTableViewController.countries = nil
+    showScopeBar(false)
   }
 }
 
@@ -168,5 +178,6 @@ extension MainViewController: ResultsTableViewDelegate {
     searchTextField.insertToken(token, at: searchTextField.tokens.count)
     // 3
     searchFor(searchController.searchBar.text)
+    showScopeBar(true)
   }
 }
