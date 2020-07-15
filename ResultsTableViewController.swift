@@ -32,6 +32,10 @@
 
 import UIKit
 
+protocol ResultsTableViewDelegate: class {
+  func didSelect(token: UISearchToken)
+}
+
 class ResultsTableViewController: UITableViewController {
   var countries: [Country]? {
     didSet {
@@ -44,6 +48,7 @@ class ResultsTableViewController: UITableViewController {
     var isFilteringByCountry: Bool {
       return countries != nil
     }
+  weak var delegate: ResultsTableViewDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -95,6 +100,13 @@ class ResultsTableViewController: UITableViewController {
       // 3
       return UITableViewCell()
     }
+  override func tableView(
+  _ tableView: UITableView,
+  didSelectRowAt indexPath: IndexPath
+) {
+  guard !isFilteringByCountry else { return }
+  delegate?.didSelect(token: searchTokens[indexPath.row])
+}
 }
 
 // MARK: -
