@@ -50,10 +50,10 @@ we use delegate protocol to notify the mainController when user taps a token, an
 
 * then if country has not been choosen it inform the delegate instance(it sends the selected token with didSelect function)
 
-* implement [ResultsTableViewDelegate.didSelect](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L134) in MainViewController.swift:
+* implement [ResultsTableViewDelegate.didSelect](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L185) in MainViewController.swift:
    get the search text, insert the token that we get to the end of the tokens for this text field at the end start searching.
    
-* set delegate of resultsTableViewController, mainController.[like this](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L44)
+* set delegate of resultsTableViewController, mainController.[like this](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L57)
 
 now we should modify our search with the choosen token:
 * get the tokens in the mainController.
@@ -69,6 +69,6 @@ To control it we shouldn't automatically show scopeBar, and make a function for 
 
 ## Customize search bar
 * change [textField](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L69) color to green
-* change [background](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L169) color of search bar. 
+* change [background](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L171) color of search bar. 
 * change color of [token](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L70)  
 <img src ="https://github.com/sharif-dev/UISearchController/blob/master/images/custom.png"  width ="840"  height="800" />
