@@ -54,7 +54,6 @@ we use delegate protocol to notify the mainController when user taps a token, an
    get the search text, insert the token that we get to the end of the tokens for this text field at the end start searching.
    
 * set delegate of resultsTableViewController, mainController.[like this](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L44)
-<img src="https://github.com/sharif-dev/UISearchController/blob/master/images/token.png" width="420" height="800" />
 
 now we should modify our search with the choosen token:
 * get the tokens in the mainController.
