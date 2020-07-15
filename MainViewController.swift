@@ -66,6 +66,7 @@ class MainViewController: UITableViewController {
     searchController.searchBar.delegate = self
     searchController.searchResultsUpdater = self
     searchController.automaticallyShowsScopeBar = false
+    searchController.searchBar.searchTextField.textColor = .rwGreen()
   }
   
   override func numberOfSections(in tableView: UITableView) -> Int {
