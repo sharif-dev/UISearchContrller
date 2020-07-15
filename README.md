@@ -67,4 +67,9 @@ now we should modify our search with the choosen token:
 
 ## Hide and show scope bar
 To control it we shouldn't automatically show scopeBar, and make a function for showing scopebar , If the search text is not empty, the scope bar should be shown;when the user taps the search bar’s Cancel button,the scope bar should be hide , and when the user selects a token,scope bar will be shown.
-  
+
+## Customize search bar
+* change [textField](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L69) color to green
+* change [background](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L169) color of search bar. 
+* change color of [token](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L70)  
+<img src ="https://github.com/sharif-dev/UISearchController/blob/master/images/custom.png"  width ="840"  height="800" />
