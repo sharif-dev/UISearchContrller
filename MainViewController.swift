@@ -67,6 +67,7 @@ class MainViewController: UITableViewController {
     searchController.searchResultsUpdater = self
     searchController.automaticallyShowsScopeBar = false
     searchController.searchBar.searchTextField.textColor = .rwGreen()
+    searchController.searchBar.searchTextField.tokenBackgroundColor = .rwGreen()
   }
   
   override func numberOfSections(in tableView: UITableView) -> Int {
