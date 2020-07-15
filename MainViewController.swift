@@ -36,6 +36,19 @@ class MainViewController: UITableViewController {
   var countries = Country.countries()
   var searchController: UISearchController!
   var resultsTableViewController: ResultsTableViewController!
+  var searchContinents: [String] {
+  // 1
+  let tokens = searchController.searchBar.searchTextField.tokens
+  // 2
+  return tokens.compactMap {
+    ($0.representedObject as? Continent)?.description
+  }
+ }
+  var isSearchingByTokens: Bool {
+  return
+    searchController.isActive &&
+    searchController.searchBar.searchTextField.tokens.count > 0
+}
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -78,25 +91,41 @@ class MainViewController: UITableViewController {
 // MARK: -
 
 extension MainViewController {
-  func searchFor(_ searchText: String?) {
-    guard searchController.isActive else { return }
-    guard let searchText = searchText else {
-      resultsTableViewController.countries = nil
-      return
-    }
-    let selectedYear = selectedScopeYear()
-    let allCountries = countries.values.joined()
-    let filteredCountries = allCountries.filter { (country: Country) -> Bool in
-      let isMatchingYear = selectedYear == Year.all.description ? true : (country.year.description == selectedYear)
-      if searchText != "" {
-        return
-          isMatchingYear &&
-          country.name.lowercased().contains(searchText.lowercased())
-      }
-      return false
-    }
-    resultsTableViewController.countries = filteredCountries
+ func searchFor(_ searchText: String?) {
+  // 1
+  guard searchController.isActive else { return }
+  // 2
+  guard let searchText = searchText else {
+    resultsTableViewController.countries = nil
+    return
   }
+  // 3
+  let selectedYear = selectedScopeYear()
+  let allCountries = countries.values.joined()
+  let filteredCountries = allCountries.filter { (country: Country) -> Bool in
+    // 4
+    let isMatchingYear = selectedYear == Year.all.description ? 
+      true : (country.year.description == selectedYear)
+    // 5
+    let isMatchingTokens = searchContinents.count == 0 ? 
+      true : searchContinents.contains(country.continent.description)
+    // 6
+    if !searchText.isEmpty {
+      return
+        isMatchingYear &&
+        isMatchingTokens &&
+        country.name.lowercased().contains(searchText.lowercased())
+    // 7
+    } else if isSearchingByTokens {
+      return isMatchingYear && isMatchingTokens
+    }
+    // 8
+    return false
+  }
+  // 9
+  resultsTableViewController.countries = 
+    filteredCountries.count > 0 ? filteredCountries : nil
+}
   
   func selectedScopeYear() -> String {
     guard let scopeButtonTitles = searchController.searchBar.scopeButtonTitles else {
