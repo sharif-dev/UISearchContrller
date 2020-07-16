@@ -1,6 +1,20 @@
 # UISearchController
 IOS research. New UISearchController features in IOS 13.
 
+<p dir="rtl">
+این پروژه قابلیت های جدید UISearchController درIOS 13 را بررسی می کند.
+برای شروع به کار ابتدا محتوا ریپازیتوری را clone کرده و با xcode بخش 
+LISTED.xcodeproj را اجرا کنید.
+</p>
+<p dir="rtl">
+	پس از باز کردن پروژه می توانید آن را build&run کنید، توضیحات زیر برای کلاس های اصلی این پروژه داده شده اند.
+</p>
+<p dir="rtl">
+منبع اصلی این پروژه:
+</p>
+https://www.raywenderlich.com/9218753-what-s-new-with-uisearchcontroller-and-uisearchbar 
+
+	
 ## The Project
 The main project has a search bar to search the name of a country and shows the population.
 * MainViewController (implements UITableViewController)
