@@ -1,6 +1,7 @@
 # UISearchController
 IOS research. New UISearchController features in IOS 13.
 
+## <div dir="rtl"> اجرای پروژه </div>
 <p dir="rtl">
 این پروژه قابلیت های جدید UISearchController درIOS 13 را بررسی می کند.
 برای شروع به کار ابتدا محتوا ریپازیتوری را clone کرده و با xcode بخش 
