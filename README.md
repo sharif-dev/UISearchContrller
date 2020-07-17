@@ -1,3 +1,4 @@
+
 # UISearchController
 IOS research. New UISearchController features in IOS 13.
 
@@ -14,6 +15,12 @@ LISTED.xcodeproj را اجرا کنید.
 منبع اصلی این پروژه:
 </p>
 https://www.raywenderlich.com/9218753-what-s-new-with-uisearchcontroller-and-uisearchbar 
+</br>
+
+README:
+* [English](#the-project)
+
+* [Persian](#پروژه)
 
 	
 ## The Project
@@ -87,3 +94,63 @@ To control it we shouldn't automatically show scopeBar, and make a function for 
 * change [background](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L171) color of search bar. 
 * change color of [token](https://github.com/sharif-dev/UISearchController/blob/master/MainViewController.swift#L70)  
 <img src ="https://github.com/sharif-dev/UISearchController/blob/master/images/custom.png"  width ="840"  height="800" />
+
+
+## <div dir="rtl">پروژه</div>
+<p dir="rtl">
+پروژه اصلی دارای یک searchBar است که با آن می توان نام یک کشور را جست و جو کرد و جمعیت آن را برحسب سال مشاهده کرد.
+</p>
+<ul dir="rtl">
+<li>MainViewController</li>
+<ul>
+	<li>ابتدا یک شیء از جنس UISearchController ایجاد می کند.</li>
+	<li>یک شیء از جنس resultsTableViewController نیز تولید می کند و آن را به searchController متصل می کند.
+	<li>مقدار searchController.obscureBackgroundDuringPresentation را برابر false قرار می دهد، با این کار وقتی روی searchBar کلیک کنیم، تصویر پس زمینه وضوحش تغییر نمی کند.
+	<li>یک رشته را بعنوان placeholder برای searchBar قرار می دهد.
+	<li>با استفاده از searchController.searchBar.scopeButtonTitles یکسری دکمه جهت فیلتر کردن نتایج جست و جو (مثلا براساس سال) ایجاد می شود.
+	<li> برای کلاس MainViewController یک extension به اسم UISearchBarDelegate را پیاده سازی می کند. شامل:
+	<ul>
+	<li> عملیات مربوطه پس از کلیک cancel
+	<li> جست و جو کردن، پس از تغییر متن نوشته شده در searchBar
+	<li> عملیات مربوط به کلیک شدن یکی از scopeButtonTitles
+	</ul>
+	<li>بقیه method های پیاده سازی شده مربوط به سلول‌های TableViewController هستند.
+</ul>
+<li>ResultsTableViewController
+<ul>
+	<li>UITableViewController را پیاده سازی می کند.
+	<li> یک field‌تحت عنوان coutries موجود است که پس از هربار تغییر کردن (didSet)، نتایج ساخته شده و نمایش داده می شوند.
+	<li> دو method در این کلاس پیاده سازی می شود که یکی مربوط به عمل کلیک کردن هر یک از سلول هاست و دیگری برای تعیین تعداد سطر های Table‌هست.
+	<li> هنگامی که کاربر جست و جو می کند، MainViewController همچنان در صفحه باقی می ماند اما نتایج در ResultsViewController نمایش داده می شوند.
+</ul>
+</ul>
+
+![alt text](https://koenig-media.raywenderlich.com/uploads/2020/03/listed-new-search-281x500.png "IOS App")
+## <div dir="rtl">استفاده از UISearchResultsUpdating </div>
+<p dir="rtl">
+کلاس MainViewController می تواند UISearchResultsUpdating‌را پیاده سازی کند. (در IOS 13). هرموقع تغییری در نوار جست و جو رخ دهد، updateSearchResults فراخوانده می شود. اگر MainViewConrtoller را بعنوان searchResultsUpdater قرار دهیم، بعد از هر تغییر اعم از نوشتن یا کلیک کردن روی نوار جست و جو نتایج آپدیت می شوند. (قبل از این، اینگونه بود که با کلیک روی نوار جست و جو از یک لیست که همه‌ی کشور ها را داشت شروع می کردیم، اما الان با این کار لیست اولیه خالی خواهد بود.)
+
+## <div dir="rtl">Search Token </div>
+<p dir="rtl">
+حالا که نتایج جست  و جو در ابتدا خالی است، می توان تعدادی token  در ابتدا نمایش داد که قابل انتخاب باشند. search token‌ها چیزی شبیه به tag‌برای جست و جو کردن هستند که نتایج را بر اساس یک ویژگی از آن ها (مثلا قاره) فیلتر می کنند. برای این کار در ResultsTableViewController یک سری تغییر بوجود می آوریم:
+</div>
+<ul dir="rtl">
+	<li> یک field‌از جنس آرایه ای از UISearchTokens‌بوجود می آوریم.
+	<li> یک method‌برای ساختن token  ها (token‌ها می توانند دارای متن و تصویر باشند.)
+	<li> هر token یک فیلد تحت عنوان representedObject دارد. که می تواند از هر نوعی باشد (any?). این جا بعنوان نمونه، از جنس Continent خواهند بود.
+	<li> چون token‌ها در همان لیستی که نتایج نشان داده می شوند، نشان داده خواهند شد. پس از یک فیلد bool برای تعیین نوع لیست استفاده می کنیم. پس متناسب با آن باید متدی که تعداد سطر ها را نشان می داد عوض کنیم.
+</ul>
+
+```
+override func tableView(
+  _ tableView: UITableView,
+  numberOfRowsInSection section: Int
+)
+```
+
+<ul dir="rtl">
+<li>بطور مشابه، سایر method‌هایی که وظیفه بازگرداند سلول ها بودند را هم عوض می کنیم که یا token‌ها را برگرداند یا نتیجه جست و جو.
+</ul>
+
+
+![tokens](https://raw.githubusercontent.com/sharif-dev/UISearchController/master/images/searchToken.jpg)
