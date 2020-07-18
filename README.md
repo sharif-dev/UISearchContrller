@@ -154,3 +154,39 @@ override func tableView(
 
 
 ![tokens](https://raw.githubusercontent.com/sharif-dev/UISearchController/master/images/searchToken.jpg)
+
+## <div dir="rtl">اضافه کردن توکن ها به searchbar </div>
+<p dir="rtl">
+برای آگاه کردن mainController از اینکه کاربر یک توکن رو انتخاب کرده تا بتواند آنرا به searchbar اضافه کند باید کار های زیر را انجام دهیم:
+</p>
+<ul dir = "rtl">
+	   <li>     باید یک نمونه از ResultsTableViewDelegateدر کنتلر جدولمان بسازیم.
+	   <li> اگر توکنی انتخاب شده به نمونه گرفته شده را آگاه کند
+	<li> توکنی که دریافت کردیم را به ادامه ی توکن های قبلی اضافه کنیم
+		<li> maincontroller را به عنوان delegate در resultsTableViewController قرار دهیم.
+</ul>
+<p dir= "rtl">
+حالا باید توکن ها را در جستجویمان تاثیر دهیم:
+</p>
+<ul dir="rtl">
+	<li>دریافت توکن ها در mainController
+		<li>الگوریتم جستجوی خود را تغییر میدهیم:
+			ابتدا آرایه ای از تمام کشور ها و سال های انتخاب شده در نظر میگیریم سپس یک closure به filter میدهیم تا با استفاده از آن فیلتر کند
+			<li> حالا آرایه ی فیلتر شده را به عنوان نتیجه جستجو خروجی میدهیم.
+</ul>
+ <img src ="https://github.com/sharif-dev/UISearchController/blob/master/images/token_result.png" width ="420"  height="800" />
+
+## <div dir="rtl">مخفی کردن و نمایش scopeBar</div>
+<p dir="rtl">
+برای اینکار باید یک تابع برای نمایش یا عدم نمایش scopeBar بنویسیم و از حالت اتوماتیک آن را در بیاوریم.
+اگر کاربر دکمه کنسل را بزند باید پنهان شود و در صورت انتخاب یک توکن نمایش داده شود
+</p>
+
+## <div dir="rtl">شخصی سازی</div>
+<ul dir="rtl">
+	<li>تغییر رنگ نوشته به سبز 
+		<li> تغییر رنگ background به سبز 
+			<li>تغییر رنگ توکن ها 
+</ul>
+<img src ="https://github.com/sharif-dev/UISearchController/blob/master/images/custom.png"  width ="840"  height="800" />
+
