@@ -2,7 +2,7 @@
 # UISearchController
 IOS research. New UISearchController features in IOS 13.
 
-## <div dir="rtl"> اجرای پروژه </div>
+## <div dir="rtl"> اعضا </div>
 محسن دهقان کار
 97105928
 زهرا یوسفی جمارانی
